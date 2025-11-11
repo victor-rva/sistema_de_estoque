@@ -1,5 +1,5 @@
 ```markdown
-# 🧮 Controle de Estoque com Concorrência
+# Controle de Estoque com Concorrência
 
 Este projeto implementa uma **API RESTful em Flask (Python)** com banco **MySQL**,  
 acompanhada de um **frontend em HTML, CSS e JavaScript puro**, simulando um **painel real de controle de estoque**.

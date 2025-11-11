@@ -82,17 +82,33 @@ def update_stock(product_id):
 
 @admin_products_bp.route("/<int:product_id>", methods=["DELETE"])
 def delete_product(product_id):
-    """Remove um produto do catálogo."""
     conn = get_conn()
     cur = conn.cursor()
     try:
-        cur.execute("DELETE FROM products WHERE id=%s", (product_id,))
-        if cur.rowcount == 0:
+        # Busca o produto
+        cur.execute("SELECT id, stock FROM products WHERE id = %s", (product_id,))
+        product = cur.fetchone()
+        if not product:
             return jsonify({"error": "Produto não encontrado"}), 404
+
+        stock = product["stock"]
+
+        # Bloqueia se ainda houver estoque
+        if stock > 0:
+            return jsonify({
+                "error": f"Produto não pode ser removido: estoque atual é {stock}."
+            }), 409
+
+        # Exclui produto
+        cur.execute("DELETE FROM products WHERE id = %s", (product_id,))
         conn.commit()
-        return jsonify({"message": "Produto removido"}), 200
+        return jsonify({"message": "Produto removido com sucesso"}), 200
+
     except Exception as e:
         conn.rollback()
+        import traceback
+        print(" ERRO AO EXCLUIR PRODUTO:")
+        traceback.print_exc()
         return jsonify({"error": "Erro ao remover produto", "detail": str(e)}), 500
     finally:
         cur.close()

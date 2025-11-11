@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Controle de Estoque</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <header>
+    <h1>Controle de Estoque</h1>
+    <p class="subtitle">Painel de gestão — cadastrar, atualizar e vender produtos</p>
+  </header>
+
+  <main>
+    <section id="products-section">
+      <div class="toolbar">
+        <button id="refreshBtn">Atualizar</button>
+        <button id="newProductBtn" class="primary">Novo Produto</button>
+      </div>
+      <table id="productsTable">
+        <thead>
+          <tr><th>ID</th><th>Produto</th><th>Estoque</th><th>Ações</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="orders-section">
+      <h2>Últimos pedidos</h2>
+      <div id="ordersList">Carregando...</div>
+    </section>
+  </main>
+
+  <!-- Modal para criar pedido -->
+  <div id="orderModal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <h3>Criar pedido</h3>
+      <p id="modalProduct"></p>
+      <label>Quantidade:
+        <input type="number" id="orderQty" min="1" value="1"/>
+      </label>
+      <div class="modal-actions">
+        <button id="submitOrder">Confirmar</button>
+        <button id="cancelOrder">Cancelar</button>
+      </div>
+      <div id="modalMsg" class="msg"></div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -19,7 +19,7 @@ inventory-system/
 │  ├─ schema.sql                  # Criação das tabelas do banco
 │  ├─ seed.sql                    # Dados iniciais para testes
 │  ├─ requirements.txt            # Dependências Python
-│  ├─ .env.example                # Exemplo de variáveis de ambiente
+│  ├─ .env                        # Variáveis de ambiente
 │  │
 │  ├─ routes/
 │  │   ├─ products.py             # GET /products, GET /products/{id}
@@ -41,7 +41,7 @@ inventory-system/
 │  ├─ css/
 │  │   └─ style.css               # Estilos do painel
 │  └─ js/
-│      └─ app.js                  # Integrações com a API via fetch()
+│      └─ script.js                  # Integrações com a API via fetch()
 │
 └─ README.md
 
@@ -53,7 +53,7 @@ inventory-system/
 ### Requisitos
 - **Python 3.10+**
 - **MySQL 8+**
-- Navegador moderno (Chrome, Edge, Firefox)
+- Navegador moderno (Chrome)
 
 ---
 
@@ -76,7 +76,6 @@ DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=dbpassword
 DB_NAME=inventory_db
-FLASK_ENV=development
 PORT=5000
 ```
 
@@ -105,8 +104,7 @@ A API iniciará em:
 
 ### Abrir o frontend
 
-Abra `frontend/index.html` diretamente no navegador
-ou use o *Live Server* do VSCode.
+Abra `frontend/index.html` diretamente no navegador.
 
 ---
 
@@ -127,6 +125,9 @@ ou use o *Live Server* do VSCode.
 ## Estrutura do Banco de Dados
 
 ```sql
+CREATE DATABASE IF NOT EXISTS inventory_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE inventory_db;
+
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -140,6 +141,8 @@ CREATE TABLE orders (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (product_id) REFERENCES products(id)
 );
+
+CREATE INDEX idx_orders_created_at ON orders (created_at DESC);
 ```
 
 ---

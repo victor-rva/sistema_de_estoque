@@ -3,9 +3,10 @@ from db import get_conn
 
 admin_products_bp = Blueprint("admin_products", __name__, url_prefix="/admin/products")
 
-# Criar novo produto
+
 @admin_products_bp.route("/", methods=["POST"])
 def create_product():
+    """Cria um novo produto no catálogo."""
     data = request.get_json(silent=True)
     if not data:
         return jsonify({"error": "JSON inválido"}), 400
@@ -35,9 +36,10 @@ def create_product():
         cur.close()
         conn.close()
 
-# Atualizar estoque (adicionar ou remover)
+
 @admin_products_bp.route("/<int:product_id>", methods=["PATCH"])
 def update_stock(product_id):
+    """Atualiza o estoque de um produto existente."""
     data = request.get_json(silent=True)
     if not data:
         return jsonify({"error": "JSON inválido"}), 400
@@ -77,9 +79,10 @@ def update_stock(product_id):
         cur.close()
         conn.close()
 
-# Remover produto
+
 @admin_products_bp.route("/<int:product_id>", methods=["DELETE"])
 def delete_product(product_id):
+    """Remove um produto do catálogo."""
     conn = get_conn()
     cur = conn.cursor()
     try:

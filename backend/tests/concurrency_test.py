@@ -1,7 +1,7 @@
 import threading
 import requests
 
-API_URL = "http://localhost:5000/orders"  # ajuste se sua app estiver em outra porta
+API_URL = "http://localhost:5000/orders"
 PRODUCT_ID = 1
 QUANTITY_PER_REQ = 1
 N_THREADS = 20

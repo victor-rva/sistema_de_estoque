@@ -1,4 +1,3 @@
-// Base URL da API
 const API_BASE = "http://localhost:5000";
 
 function qsel(s){return document.querySelector(s)}

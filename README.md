@@ -99,7 +99,7 @@ python app.py
 
 A API iniciará em:
 
-👉 [http://localhost:5000](http://localhost:5000)
+[http://localhost:5000](http://localhost:5000)
 
 ---
 
@@ -181,7 +181,7 @@ O arquivo `backend/tests/concurrency_test.py` simula **múltiplas requisições 
 
 Esse teste garante que o sistema **nunca permite estoque negativo** e que o **controle transacional** funciona corretamente.
 
-### 🧾 Exemplo de execução:
+### Exemplo de execução:
 
 ```bash
 cd backend/tests

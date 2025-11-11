@@ -10,9 +10,8 @@ O foco é demonstrar boas práticas de arquitetura backend, **controle de concor
 
 ## Estrutura do Projeto
 
-```
 
-inventory-case/
+inventory-system/
 │
 ├─ backend/
 │  ├─ app.py                      # Inicializa o Flask e registra os blueprints
@@ -46,7 +45,6 @@ inventory-case/
 │
 └─ README.md
 
-````
 
 ---
 
